@@ -5,7 +5,7 @@ function App() {
   return (
     <>
       <div>
-      <Button>Set up</Button>
+      <Button>Create a new branch v1</Button>
     </div>
     </>
   )
