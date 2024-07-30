@@ -1,12 +1,16 @@
 import DashboardLayout from "@/components/utils/Dashboard/dashboardLayout"
+import { Route, Routes } from "react-router-dom"
 
 function App() {
 
   return (
     <>
-      <div>
+      {/* <div>
       <DashboardLayout />
-    </div>
+    </div> */}
+    <Routes>
+      <Route path="/" element={<DashboardLayout />} />
+    </Routes>
     </>
   )
 }
