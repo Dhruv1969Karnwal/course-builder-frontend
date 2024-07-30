@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/button"
+import DashboardLayout from "@/components/utils/Dashboard/dashboardLayout"
 
 function App() {
 
   return (
     <>
       <div>
-      <Button variant="destructive">Create a new branch v1</Button>
+      <DashboardLayout />
     </div>
     </>
   )
