@@ -1,13 +1,11 @@
 import DashboardLayout from "@/components/utils/Dashboard/dashboardLayout"
 
-const Home = () => {
+const Search = () => {
   return (
     <DashboardLayout>
-      <div className="">
-        Home
-      </div>
+      <div>Search</div>
     </DashboardLayout>
   )
 }
 
-export default Home
+export default Search
