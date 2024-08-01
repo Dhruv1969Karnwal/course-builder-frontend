@@ -1,5 +1,6 @@
-import DashboardLayout from "@/components/utils/Dashboard/dashboardLayout"
 import { Route, Routes } from "react-router-dom"
+import Search from "./pages/Search"
+import Home from "./pages/Home"
 
 function App() {
 
@@ -9,7 +10,9 @@ function App() {
       <DashboardLayout />
     </div> */}
     <Routes>
-      <Route path="/" element={<DashboardLayout />} />
+    
+      <Route path="/" element={<Home />} />
+      <Route path="/search" element={<Search />} />
     </Routes>
     </>
   )
