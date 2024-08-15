@@ -1,3 +1,4 @@
+import ToasterProvider from "@/components/providers/toaster-provider";
 import Navbar from "../components/navbar";
 import Sidebar from "./sidebar";
 
@@ -12,6 +13,7 @@ const DashboardLayout = ({ children }) => {
         <Sidebar />
       </div>
       <main className="md:pl-56 pt-[80px] h-full">
+      <ToasterProvider />
       {children}
       </main>
     </div>

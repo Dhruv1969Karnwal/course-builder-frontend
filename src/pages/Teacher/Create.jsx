@@ -17,6 +17,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   title: z.string().min(1, {
@@ -24,7 +25,7 @@ const formSchema = z.object({
   }),
 });
 
-const Create = () => {
+const CreateCoursePage = () => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,8 +37,8 @@ const Create = () => {
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values) => {
-    
-    console.log("values of",values);
+    console.log("values of", values);
+    toast.success("Course submitted");
   };
 
   return (
@@ -77,7 +78,9 @@ const Create = () => {
                     Cancel
                   </Button>
                 </Link>
-                <Button type="submit" disabled={!isValid || isSubmitting}>Submit</Button>
+                <Button type="submit" disabled={!isValid || isSubmitting} >
+                  Submit
+                </Button>
               </div>
             </form>
           </Form>
@@ -88,4 +91,4 @@ const Create = () => {
   );
 };
 
-export default Create;
+export default CreateCoursePage;

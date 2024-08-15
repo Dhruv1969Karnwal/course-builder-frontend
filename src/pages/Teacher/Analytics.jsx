@@ -1,6 +1,6 @@
 import DashboardLayout from "@/components/utils/Dashboard/dashboardLayout"
 
-const Analytics = () => {
+const AnalyticsPage = () => {
   return (
     <DashboardLayout>
       <div className="">
@@ -10,4 +10,4 @@ const Analytics = () => {
   )
 }
 
-export default Analytics
+export default AnalyticsPage
