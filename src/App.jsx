@@ -4,6 +4,7 @@ import SearchPage from "./pages/Search"
 import CoursesPage from "./pages/Teacher/Courses"
 import AnalyticsPage from "./pages/Teacher/Analytics"
 import CreateCoursePage from "./pages/Teacher/Create"
+import CourseIDPage from "./pages/Teacher/CourseID"
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       <Route path="/teacher/courses" element={<CoursesPage />} />
       <Route path="/teacher/analytics" element={<AnalyticsPage />} />
       <Route path="/teacher/create" element={<CreateCoursePage />} />
+      <Route path="teacher/courses/:id" element={<CourseIDPage />} />
     </Routes>
     </>
   )
