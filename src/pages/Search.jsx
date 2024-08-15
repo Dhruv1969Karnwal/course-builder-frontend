@@ -1,6 +1,6 @@
 import DashboardLayout from "@/components/utils/Dashboard/dashboardLayout"
 
-const Search = () => {
+const SearchPage = () => {
   return (
     <DashboardLayout>
       <div>Search</div>
@@ -8,4 +8,4 @@ const Search = () => {
   )
 }
 
-export default Search
+export default SearchPage

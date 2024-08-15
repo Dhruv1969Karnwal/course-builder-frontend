@@ -1,6 +1,6 @@
 import DashboardLayout from "@/components/utils/Dashboard/dashboardLayout"
 
-const Home = () => {
+const HomePage = () => {
   return (
     <DashboardLayout>
       <div className="">
@@ -10,4 +10,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomePage

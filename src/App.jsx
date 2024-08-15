@@ -1,20 +1,20 @@
 import { Route, Routes } from "react-router-dom"
-import Search from "./pages/Search"
-import Home from "./pages/Home"
-import Courses from "./pages/Teacher/Courses"
-import Analytics from "./pages/Teacher/Analytics"
-import Create from "./pages/Teacher/Create"
+import HomePage from "./pages/Home"
+import SearchPage from "./pages/Search"
+import CoursesPage from "./pages/Teacher/Courses"
+import AnalyticsPage from "./pages/Teacher/Analytics"
+import CreateCoursePage from "./pages/Teacher/Create"
 
 function App() {
 
   return (
     <>
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/search" element={<Search />} />
-      <Route path="/teacher/courses" element={<Courses />} />
-      <Route path="/teacher/analytics" element={<Analytics />} />
-      <Route path="/teacher/create" element={<Create />} />
+      <Route path="/" element={<HomePage />} />
+      <Route path="/search" element={<SearchPage />} />
+      <Route path="/teacher/courses" element={<CoursesPage />} />
+      <Route path="/teacher/analytics" element={<AnalyticsPage />} />
+      <Route path="/teacher/create" element={<CreateCoursePage />} />
     </Routes>
     </>
   )
