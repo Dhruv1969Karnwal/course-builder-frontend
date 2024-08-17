@@ -38,6 +38,10 @@ const CreateCoursePage = () => {
 
   const onSubmit = async (values) => {
     console.log("values of", values);
+    
+    // TODO:
+    // Post request to backend;
+
     toast.success("Course submitted");
   };
 
