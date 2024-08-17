@@ -1,7 +1,8 @@
 import { IconBadge } from "@/components/utils/components/icon-badge";
 import DashboardLayout from "@/components/utils/Dashboard/dashboardLayout";
 import { LayoutDashboard } from "lucide-react";
-import TitleForm from "./components/TitleForm";
+import TitleForm from "../../components/utils/components/TitleForm";
+import DescriptionForm from "@/components/utils/components/DescriptionForm";
 
 
 
@@ -53,6 +54,10 @@ const CourseIDPage = () => {
         <TitleForm initialData={course}
         courseId={course._id}
         />
+        <DescriptionForm initialData={course}
+        courseId={course._id}
+        />
+        
       </div>
       </div>
     </div>
