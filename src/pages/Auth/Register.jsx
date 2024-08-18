@@ -12,6 +12,10 @@ import { z } from "zod";
 import CardWrapper from "@/components/utils/components/cardWapper";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { DevTool } from "@hookform/devtools";
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import toast from "react-hot-toast";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -42,8 +46,21 @@ const Register = () => {
   const { control, handleSubmit } = form;
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = (values) => {
-    console.log(values);
+  const mutation = useMutation({
+    mutationFn: async (data) => {
+        const response = await axios.post("http://localhost:8080/signUp", data);
+        return response.data;
+    },
+    onSuccess: () => {
+      toast.success("Signed in successfully")
+    },
+    onError: () => {
+        toast.error("Not Signed in .")
+    }
+  })
+
+  const onSubmit = async (values) => {
+    mutation.mutate(values);
   };
 
   return (
@@ -118,6 +135,7 @@ const Register = () => {
           </Button>
         </form>
       </Form>
+      <DevTool control={control} />
     </CardWrapper>
   );
 };
