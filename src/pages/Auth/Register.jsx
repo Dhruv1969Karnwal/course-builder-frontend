@@ -25,6 +25,7 @@ import { DevTool } from "@hookform/devtools";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -42,6 +43,7 @@ const formSchema = z.object({
 });
 
 const Register = () => {
+  const navigate = useNavigate();
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -64,6 +66,7 @@ const Register = () => {
     },
     onSuccess: () => {
       toast.success("Signed in successfully");
+      navigate("/")
     },
     onError: () => {
       toast.error("Not Signed in ...");

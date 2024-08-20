@@ -18,6 +18,7 @@ import {
   import axios from "axios";
   import { useMutation } from "@tanstack/react-query";
   import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
   
   const formSchema = z.object({
     email: z.string().min(1, {
@@ -29,6 +30,9 @@ import {
   });
   
   const LogIn = () => {
+
+    const navigate = useNavigate();
+
     const form = useForm({
       resolver: zodResolver(formSchema),
       defaultValues: {
@@ -51,6 +55,7 @@ import {
 
         toast.success("Signed in successfully");
         console.log('API Response:!!!',data);
+        navigate("/")
       },
       onError: (err) => {
         toast.error("Not Signed in ...",err);
