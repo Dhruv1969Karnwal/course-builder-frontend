@@ -6,6 +6,15 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -48,18 +57,21 @@ const Register = () => {
 
   const mutation = useMutation({
     mutationFn: async (data) => {
-        const response = await axios.post("http://localhost:8080/signUp", data);
-        return response.data;
+      const response = await axios.post("http://localhost:8080/signUp", data, {
+        withCredentials: true
+      });
+      return response.data;
     },
     onSuccess: () => {
-      toast.success("Signed in successfully")
+      toast.success("Signed in successfully");
     },
     onError: () => {
-        toast.error("Not Signed in .")
-    }
-  })
+      toast.error("Not Signed in ...");
+    },
+  });
 
   const onSubmit = async (values) => {
+    console.log(values);
     mutation.mutate(values);
   };
 
@@ -67,7 +79,7 @@ const Register = () => {
     <CardWrapper
       label="Create an account"
       title="Register"
-      backButtonHref="/auth/login"
+      backButtonHref="/auth/logIn"
       backButtonLabel="Already have an account? Login here."
     >
       <Form {...form}>
@@ -123,7 +135,21 @@ const Register = () => {
                 <FormItem>
                   <FormLabel>Role</FormLabel>
                   <FormControl>
-                    <Input {...field} type="text" placeholder="student" />
+                    <Select
+                      {...field}
+                      onValueChange={field.onChange}
+                      value={field.value}
+                    >
+                      <SelectTrigger id="framework">
+                        <SelectValue placeholder="Select" />
+                      </SelectTrigger>
+                      <SelectContent position="popper">
+                        <SelectItem value="teacher">Teacher</SelectItem>
+                        <SelectItem value="student">Student</SelectItem>
+                        <SelectItem value="HOD">HOD</SelectItem>
+                        <SelectItem value="principal">Principal</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </FormControl>
                   <FormMessage />
                 </FormItem>

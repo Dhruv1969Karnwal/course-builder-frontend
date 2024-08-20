@@ -6,6 +6,7 @@ import AnalyticsPage from "./pages/Teacher/Analytics"
 import CreateCoursePage from "./pages/Teacher/Create"
 import CourseIDPage from "./pages/Teacher/CourseID"
 import Register from "./pages/Auth/Register"
+import LogIn from "./pages/Auth/LogIn"
 
 function App() {
 
@@ -15,6 +16,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/search" element={<SearchPage />} />
       <Route path="/auth/signUp" element={<Register />} />
+      <Route path="/auth/LogIn" element={<LogIn />} />
       <Route path="/teacher/courses" element={<CoursesPage />} />
       <Route path="/teacher/analytics" element={<AnalyticsPage />} />
       <Route path="/teacher/create" element={<CreateCoursePage />} />
