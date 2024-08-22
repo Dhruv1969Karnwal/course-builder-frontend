@@ -18,7 +18,6 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import CardWrapper from "@/components/utils/components/cardWapper";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { DevTool } from "@hookform/devtools";
@@ -26,6 +25,9 @@ import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import CardWrapper from "@/components/utils/components/Auth/cardWapper";
+import { Avatar, AvatarImage } from "@/components/ui/avatar";
+import { useRef, useState } from "react";
 
 const formSchema = z.object({
   name: z.string().min(1, {
@@ -40,10 +42,16 @@ const formSchema = z.object({
   role: z.string().min(1, {
     message: "Role is required",
   }),
+  file: z.instanceof(FileList).optional(),
 });
 
 const Register = () => {
   const navigate = useNavigate();
+  const fileUploadRef = useRef();
+  const [avatarImage, setAvatarImage] = useState(
+    "https://png.pngtree.com/png-vector/20210604/ourmid/pngtree-gray-avatar-placeholder-png-image_3416697.jpg"
+  );
+
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -51,31 +59,61 @@ const Register = () => {
       email: "",
       password: "",
       role: "",
+      file: null,
     },
   });
 
-  const { control, handleSubmit } = form;
+  const fileRef = form.register("file");
+
+  const { control, handleSubmit, setValue } = form;
   const { isSubmitting, isValid } = form.formState;
 
   const mutation = useMutation({
-    mutationFn: async (data) => {
-      const response = await axios.post("http://localhost:8080/signUp", data, {
-        withCredentials: true
+    mutationFn: async (formData) => {
+      const response = await axios.post("http://localhost:8080/signUp", formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        withCredentials: true,
       });
       return response.data;
     },
     onSuccess: () => {
-      toast.success("Signed in successfully");
-      navigate("/")
+      toast.success("Signed up successfully");
+      navigate("/");
     },
     onError: () => {
-      toast.error("Not Signed in ...");
+      toast.error("Sign up failed");
     },
   });
 
   const onSubmit = async (values) => {
-    console.log(values);
-    mutation.mutate(values);
+    const formData = new FormData();
+    formData.append('name', values.name);
+    formData.append('email', values.email);
+    formData.append('password', values.password);
+    formData.append('role', values.role);
+
+    if (values.file && values.file.length > 0) {
+      formData.append('file', values.file[0]);
+    }
+
+    mutation.mutate(formData);
+
+    console.log(values.file[0]);
+  };
+
+  const handleImageClick = () => {
+    fileUploadRef.current.click();
+  };
+
+  const uploadImageDisplay = () => {
+    const uploadedFile = fileUploadRef.current.files[0];
+    if (uploadedFile) {
+      const cachedUrl = URL.createObjectURL(uploadedFile);
+      setAvatarImage(cachedUrl);
+      setValue('file', fileUploadRef.current.files); // Set the file in the form state
+    }
   };
 
   return (
@@ -88,6 +126,30 @@ const Register = () => {
       <Form {...form}>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <div className="space-y-4">
+            <div className="flex justify-center w-full">
+              <Avatar className="h-28 w-28">
+                <AvatarImage src={avatarImage} onClick={handleImageClick} />
+              </Avatar>
+            </div>
+            <FormField
+              control={control}
+              name="file"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      type="file"
+                      placeholder="Upload Avatar"
+                      {...fileRef}
+                      className="hidden"
+                      ref={fileUploadRef}
+                      onChange={uploadImageDisplay}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <FormField
               control={control}
               name="email"
@@ -143,7 +205,7 @@ const Register = () => {
                       onValueChange={field.onChange}
                       value={field.value}
                     >
-                      <SelectTrigger id="framework">
+                      <SelectTrigger id="role">
                         <SelectValue placeholder="Select" />
                       </SelectTrigger>
                       <SelectContent position="popper">

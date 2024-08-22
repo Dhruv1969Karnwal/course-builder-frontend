@@ -1,13 +1,11 @@
-import DashboardLayout from "@/components/utils/Dashboard/dashboardLayout"
+import DashboardLayout from "@/components/utils/Dashboard/dashboardLayout";
 
 const HomePage = () => {
   return (
     <DashboardLayout>
-      <div className="">
-        Home
-      </div>
+      <div className="">Home</div>
     </DashboardLayout>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

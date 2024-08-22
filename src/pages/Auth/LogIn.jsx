@@ -11,7 +11,6 @@ import {
   import { zodResolver } from "@hookform/resolvers/zod";
   import { useForm } from "react-hook-form";
   import { z } from "zod";
-  import CardWrapper from "@/components/utils/components/cardWapper";
   import { Input } from "@/components/ui/input";
   import { Button } from "@/components/ui/button";
   import { DevTool } from "@hookform/devtools";
@@ -19,6 +18,7 @@ import {
   import { useMutation } from "@tanstack/react-query";
   import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import CardWrapper from "@/components/utils/components/Auth/cardWapper";
   
   const formSchema = z.object({
     email: z.string().min(1, {

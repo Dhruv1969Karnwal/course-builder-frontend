@@ -38,7 +38,7 @@ const CreateCoursePage = () => {
 
   const onSubmit = async (values) => {
     console.log("values of", values);
-    
+
     // TODO:
     // Post request to backend;
 
@@ -82,7 +82,7 @@ const CreateCoursePage = () => {
                     Cancel
                   </Button>
                 </Link>
-                <Button type="submit" disabled={!isValid || isSubmitting} >
+                <Button type="submit" disabled={!isValid || isSubmitting}>
                   Submit
                 </Button>
               </div>
