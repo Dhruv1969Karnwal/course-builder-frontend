@@ -5,6 +5,7 @@ import DescriptionForm from "@/components/utils/components/Form/DescriptionForm"
 import { IconBadge } from "@/components/utils/components/ui/icon-badge";
 
 import { Course } from '../../types/course';
+import ImageForm from "@/components/utils/components/Form/ImageForm";
 
 const CourseIDPage = () => {
   // TODO:
@@ -49,6 +50,7 @@ const CourseIDPage = () => {
             </div>
             <TitleForm initialData={course} courseId={course._id} />
             <DescriptionForm initialData={course} courseId={course._id} />
+            <ImageForm initialData={course} courseId={course._id} />
           </div>
         </div>
       </div>
