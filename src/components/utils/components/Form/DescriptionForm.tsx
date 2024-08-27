@@ -1,6 +1,6 @@
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 
 import {
@@ -44,7 +44,7 @@ const DescriptionForm = ({ initialData, courseId }: DescriptionFormProps) => {
   const { control, handleSubmit } = form;
   const { isSubmitting, isValid } = form.formState;
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit : SubmitHandler<z.infer<typeof formSchema>> = async (values: z.infer<typeof formSchema>) => {
     // TODO:  patch request and add toggleEdit()
     console.log("values of", values);
   };
